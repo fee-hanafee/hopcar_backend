@@ -1,5 +1,5 @@
 const express = require("express");
-const dotenv = require("dotenv").config({ path: "./.env" });
+require("dotenv").config({ path: "./.env" });
 const http = require("http");
 
 const resApiServer = require("./server");
