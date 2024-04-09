@@ -3,7 +3,9 @@ const repo = require("../repository");
 const { CustomError } = require("../config/error");
 
 module.exports.getMe = utils.catchError(async (req, res, next) => {
-  res.status(200).json({ message: req.body });
+  const accessToken = utils.jwt.sign({ id: req.user.id, role: req.user.role });
+  delete req.user.password;
+  res.status(200).json({ user: req.user, accessToken });
 });
 
 module.exports.register = utils.catchError(async (req, res, next) => {
@@ -29,7 +31,6 @@ module.exports.login = utils.catchError(async (req, res, next) => {
     throw new CustomError("username or password is wrong", "WRONG_INPUT", 400);
 
   const accessToken = utils.jwt.sign({ id: user.id, role: user.role });
-  const refreshToken = utils.jwt.sign({ id: user.id, role: user.role });
-
-  res.status(200).json({ accessToken, refreshToken });
+  delete user.password;
+  res.status(200).json({ accessToken, user });
 });
