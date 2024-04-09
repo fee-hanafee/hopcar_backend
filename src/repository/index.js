@@ -1,5 +1,6 @@
 const repo = {
-    auth: require('./auth')
-}
+  auth: require("./auth"),
+  manager: require("./manager"),
+};
 
-module.exports = repo
+module.exports = repo;
