@@ -29,22 +29,24 @@ model User {
 }
 
 model Car {
-  id         Int       @id @default(autoincrement())
-  license    String
-  model      String
-  color      String?
-  note       String?
-  insurance  String?
-  descrition String?
-  year       DateTime?
+  id          Int       @id @default(autoincrement())
+  licenseHead String    @map("license_head") @db.VarChar(3)
+  licenseBody Int       @map("license_body")
+  city        String
+  model       String
+  color       String?
+  note        String?
+  insurance   String?
+  descrition  String?
+  year        DateTime?
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(0)
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp(0)
 
-  role Status
+  role Status @default(Ready)
   type Type
 
-  image String
+  image String?
 
   Transactions Transaction[]
 
