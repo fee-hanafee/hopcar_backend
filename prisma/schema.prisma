@@ -18,7 +18,7 @@ model User {
   password  String
   firstName String @map("first_name")
   lastName  String @map("last_name")
-  role      Role
+  role      Role   @default(User)
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(0)
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp(0)
@@ -44,8 +44,7 @@ model Car {
   role Status
   type Type
 
-  image   Image? @relation(fields: [imageId], references: [id])
-  imageId Int?   @map("image_id")
+  image String
 
   Transactions Transaction[]
 
@@ -65,13 +64,6 @@ enum Type {
   SEDAN
   VAN
   PICKUP
-}
-
-model Image {
-  id    Int    @id @default(autoincrement())
-  image String
-
-  Cars Car[]
 }
 
 model Transaction {

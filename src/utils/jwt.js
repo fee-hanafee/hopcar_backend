@@ -5,3 +5,4 @@ module.exports.sign = (payload) =>
     algorithm: process.env.JWT_ALGORITHM,
     expiresIn: process.env.JWT_EXPIRES,
   });
+
