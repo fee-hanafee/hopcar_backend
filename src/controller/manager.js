@@ -37,12 +37,12 @@ module.exports.editCar = utils.catchFinal(async (req, res, next) => {
 module.exports.deleteCar = utils.catchError(async (req, res, next) => {
   checkManger(req.user);
   const { carId } = req.params;
-  console.log(req.params);
-  const transac = await repo.manager.findManyTransac(carId);
+  // console.log(req.params);
+  // const transac = await repo.manager.findManyTransac(carId);
 
-  if (transac.length != 0) {
-    await repo.manager.updateTransac({ carId: 99999, carId });
-  }
+  // if (transac.length != 0) {
+  //   await repo.manager.updateTransac({ carId: 99999, carId });
+  // }
 
   await repo.manager.deletCar(carId);
 
